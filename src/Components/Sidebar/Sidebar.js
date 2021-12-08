@@ -1,13 +1,21 @@
-import { List  , ListItem  , ListItemText, Drawer, makeStyles} from '@material-ui/core'
-import Icon from "@material-ui/core/Icon";
+import { List  , ListItem  , ListItemText, Drawer, makeStyles, Collapse, ListItemIcon, Divider} from '@material-ui/core'
+// import ListItemButton from "@material-ui/core/ListItemButton";
+// import ListItemButton from '@mui/material/ListItemButton';
+import { ListItemButton } from '@mui/material';
 import React from 'react'
 import {NavLink , useLocation} from 'react-router-dom'
 import classNames from "classnames";
 import styles from 'assets/jss/material-dashboard-react/components/sidebarStyle.js'
+import { ChevronRight, ExpandLess, ExpandMore , FiberManualRecord} from '@material-ui/icons';
 const useStyles = makeStyles(styles);
 
 export default function Sidebar(props) {
     const classes = useStyles();
+    const [open, setOpen] = React.useState(false);
+
+    const handleClick = () => {
+      setOpen(!open);
+    };
     let location = useLocation();
     const {color , logo , image , logoText , routes } = props
     function activeRoute(routeName) {
@@ -23,26 +31,58 @@ export default function Sidebar(props) {
                 });
               
                return (
+              
                 <NavLink
                 to={prop.layout + prop.path}
                 className={classes.item}
                
                 key={key}
-              >
-                       <ListItem button className={classes.itemLink  + listItemClasses}>
-                    
+              > 
+                <List>
+                       <ListItem button className={classes.itemLink  + listItemClasses}
+                       onClick={handleClick}
+                       >
+                                
                                 <prop.icon 
                                 className = {classes.itemIcon}
                                 />
-                        
+                         
                            <ListItemText 
                            primary = {prop.name}
                            disableTypography = {true}
                            className = {classes.itemText}
 
                            />
+                           {prop.subItems ? open ? < ExpandMore className = {classes.arrow}/> : < ChevronRight className = {classes.arrow}/> : null}
+
+                    
+
 
                        </ListItem>
+                       {prop.subItems && prop.subItems.map((item) => (
+                             <Collapse in={open} timeout="auto" unmountOnExit>
+                             <Divider />
+                                <List component="div" disablePadding  key={key}>
+                               
+                                <NavLink
+                                        to={prop.layout + item.path}
+                                        className={classes.item}
+                                    
+                                        key={key}
+                                    > 
+                                <ListItem   button className={classes.menuItem}>
+                              
+                                    <ListItemText inset primary={item.name} />
+                                </ListItem > 
+                                </NavLink>
+                              
+                                </List>
+                            </Collapse>
+
+                       ))
+                 
+            }
+                </List>
 
                    </NavLink>
                ) 

@@ -93,7 +93,10 @@ const CustomTooltip = ({ active, payload }) => {
           cursor={{ fill: "transparent" }} 
           content={CustomTooltip}
           />
-        <XAxis dataKey="name" angle={0} textAnchor="ri" tick={{ fontSize: 13 }} />
+        <XAxis 
+        dataKey="name" 
+        angle={0} 
+        textAnchor="ri" tick={{ fontSize: 13 }} />
  
         <Bar dataKey="Website" fill="#1e3d93" 	 
         barSize={10}

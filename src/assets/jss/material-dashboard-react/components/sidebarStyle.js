@@ -61,7 +61,7 @@ const sidebarStyle = (theme) =>({
         margin: "10px 15px 0",
         borderRadius: "10px",
         position: "relative",
-        display : "block",
+        display : "flex",
         padding : "10px 15px",
         backgroundColor: "transparent",
         "&:hover,&:focus": {
@@ -169,7 +169,17 @@ const sidebarStyle = (theme) =>({
         }
 
     },
-   
+    menuItem:{
+      color: whiteColor,
+    
+      // justifyContent: "right",
+      // left:0,
+      // right: "0",
+      // alignItems: "center",
+    },
+   arrow :{
+     color: whiteColor,
+   },
       blue: {
     
         backgroundColor:  'rgba(255, 255, 255, 0.08)',

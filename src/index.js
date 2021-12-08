@@ -1,13 +1,17 @@
 
+import { CssBaseline } from '@material-ui/core';
 import Admin from 'Layouts/Admin';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {BrowserRouter} from 'react-router-dom'
 
 ReactDOM.render(  
+  <>
+       <CssBaseline  /> 
   <BrowserRouter>
   <Admin />
-  </BrowserRouter>,
+  </BrowserRouter>
+  </>,
   document.getElementById('root')
 );
 
